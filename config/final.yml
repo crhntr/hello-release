@@ -1,1 +1,5 @@
 name: hello-go
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp/hello-go

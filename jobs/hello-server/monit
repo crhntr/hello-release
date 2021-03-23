@@ -1,0 +1,5 @@
+check process web_ui
+  with pidfile /var/vcap/sys/run/hello-server/pid
+  start program "/var/vcap/jobs/hello-server/bin/ctl start"
+  stop program "/var/vcap/jobs/hello-server/bin/ctl stop"
+  group vcap

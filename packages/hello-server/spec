@@ -1,0 +1,8 @@
+---
+name: hello-server
+
+dependencies:
+- golang-1.16-linux
+
+files:
+- ./**/*

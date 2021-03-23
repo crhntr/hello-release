@@ -1,0 +1,11 @@
+set -e
+
+#!/bin/bash -eu
+source /var/vcap/packages/golang-1.16-linux/bosh/compile.env
+
+cd cmd/hello-server || exit 1
+
+CGO_ENABLED=0 go build -o hello-server
+
+mkdir -p "${BOSH_INSTALL_TARGET}"
+mv hello-server "${BOSH_INSTALL_TARGET}"
