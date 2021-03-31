@@ -1,0 +1,23 @@
+name: hello-go
+version: 0.1.0
+commit_hash: a911c5d
+uncommitted_changes: false
+jobs:
+- name: hello-server
+  version: 73498d1a7ab0ed9ec505c6b7f23b3990cac0d4504c98878618c29a91d301f530
+  fingerprint: 73498d1a7ab0ed9ec505c6b7f23b3990cac0d4504c98878618c29a91d301f530
+  sha1: sha256:f332f0befeedb6c2aa2107a3c6203fdf8f42117a061b4836c988b7fd3417d376
+  packages:
+  - hello-server
+packages:
+- name: golang-1.16-linux
+  version: f7469bcc89e5ea0ede5e5b88225e8f8c8808720d7badd1b5b2304fe5087ccbeb
+  fingerprint: f7469bcc89e5ea0ede5e5b88225e8f8c8808720d7badd1b5b2304fe5087ccbeb
+  sha1: sha256:bb089f1f9d4de5a8c9f6057e54e54d4082ece1be12290d8bfbb746997b2dc91d
+  dependencies: []
+- name: hello-server
+  version: 0189d3f15a5e2eb9a2293cb2c7ffcec406b01f445cb0db5fd01ecd5dbc89aebe
+  fingerprint: 0189d3f15a5e2eb9a2293cb2c7ffcec406b01f445cb0db5fd01ecd5dbc89aebe
+  sha1: sha256:d2e4f86c657ce2dd063bc1c676b52e2f1bce6c56ac44369d258c917467459383
+  dependencies:
+  - golang-1.16-linux
