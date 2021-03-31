@@ -18,6 +18,6 @@ export PATH="${GOBIN}:${PATH}"
 export GOFLAGS=-mod=vendor
 export CGO_ENABLED=0
 
-go build -o hello-server
+go build ./cmd/hello-server -o hello-server
 
 cp hello-server "${BOSH_INSTALL_TARGET}"
