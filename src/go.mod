@@ -1,3 +1,3 @@
-module github.com/crhntr/hello-go-release/src
+module github.com/crhntr/hello-release/src
 
 go 1.16
