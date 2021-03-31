@@ -1,5 +1,11 @@
 config/private.yml
+config/dev.yml
 .dev_builds
 dev_releases
 *.tgz
 .idea
+.DS_Store
+.blobs
+blobs
+bin
+src/vendor
