@@ -1,0 +1,7 @@
+#!/bin/bash -eu
+
+echo "Fetching Go modules"
+
+go version
+
+go mod -v vendor
