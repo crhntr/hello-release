@@ -7,23 +7,24 @@ update:
   update_watch_time: 1000-30000
   initial_deploy_az_update_strategy: serial
 stemcells:
-- alias: default
-  os: ubuntu-xenial
-  version: latest
+  - alias: default
+    os: ubuntu-xenial
+    version: latest
 releases:
-- name: hello-release
-  version: 0.1.0
-  url: git+https://github.com/crhntr/hello-release
+  - name: hello-release
+    version: 0.1.0
+    url: git+https://github.com/crhntr/hello-release
 instance_groups:
-- name: hello
-  azs: [z1]
-  instances: 1
-  stemcell: default
-  vm_type: small
-  vm_extensions: [internet-required]
-  networks: {name: default}
-  jobs:
-  - name: hello-server
-    release: hello-release
-    properties:
-      port: 80
+  - name: hello
+    azs: [z1]
+    instances: 1
+    stemcell: default
+    vm_type: small
+    vm_extensions: [internet-required]
+    networks:
+      - name: default
+    jobs:
+      - name: hello-server
+        release: hello-release
+        properties:
+          port: 80
