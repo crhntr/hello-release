@@ -2,4 +2,4 @@
 
 This is a simple bosh release.
 
-See example-deployment for an example deployment manifest.
+See examples/deployment for an example deployment manifest.
