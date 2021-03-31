@@ -1,5 +1,5 @@
 name: hello-release
 blobstore:
-  provider: local
+  provider: gcs
   options:
-    blobstore_path: /tmp/hello-go
+    bucket_name: crhntr-hello-release
