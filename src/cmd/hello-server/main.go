@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	_ "embed"
 	"html/template"
 	"io"
 	"log"
@@ -16,7 +17,7 @@ func main() {
 
 	mux.HandleFunc("/", indexPage)
 
-	log.Fatal(http.ListenAndServe(":" + port, requireGetMethod(mux)))
+	log.Fatal(http.ListenAndServe(":"+port, requireGetMethod(mux)))
 }
 
 //go:embed index.gohtml
@@ -48,6 +49,6 @@ func requireGetMethod(next http.Handler) http.HandlerFunc {
 			http.Error(res, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 			return
 		}
-		next.ServeHTTP(res, req )
+		next.ServeHTTP(res, req)
 	}
 }
