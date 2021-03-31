@@ -11,7 +11,7 @@ stemcells:
   os: ubuntu-xenial
   version: latest
 releases:
-- name: hello-go
+- name: hello-release
   version: latest
   url: git+https://github.com/crhntr/hello-release
 instance_groups:
@@ -24,6 +24,6 @@ instance_groups:
   networks: {name: default}
   jobs:
   - name: hello-server
-    release: hello-go
+    release: hello-release
     properties:
       port: 80

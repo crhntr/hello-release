@@ -1,4 +1,4 @@
-name: hello-go
+name: hello-release
 blobstore:
   provider: local
   options:
