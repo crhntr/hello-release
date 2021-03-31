@@ -1,0 +1,29 @@
+---
+name: hello
+update:
+  canaries: 1
+  max_in_flight: 10
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000
+  initial_deploy_az_update_strategy: serial
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: latest
+releases:
+- name: hello-go
+  version: latest
+  url: git+https://github.com/crhntr/hello-release
+instance_groups:
+- name: hello
+  azs: [z1]
+  instances: 1
+  stemcell: default
+  vm_type: small
+  vm_extensions: [internet-required]
+  networks: {name: default}
+  jobs:
+  - name: hello-server
+    release: hello-go
+    properties:
+      port: 80
