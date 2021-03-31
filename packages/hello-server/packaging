@@ -9,7 +9,7 @@ export GOCACHE=/var/vcap/data/golang-1.16-linu/cache
 mkdir -p "${GOCACHE}"
 
 # Setup GOPATH (required to run Go build)
-export TEMPORARY_GOPATH="tmp"
+export TEMPORARY_GOPATH="${PWD}/tmp"
 mkdir -p "${TEMPORARY_GOPATH}"
 export GOPATH="${TEMPORARY_GOPATH}"
 export GOBIN="${GOPATH}/bin"
