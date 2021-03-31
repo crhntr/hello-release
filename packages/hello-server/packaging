@@ -4,6 +4,10 @@
 export GOROOT=$(readlink -nf /var/vcap/packages/golang-1.16-linux)
 export PATH="${GOROOT}/bin:$PATH"
 
+# For debugging porpoises
+go env
+ls -la
+
 # This is for use of Go modules.
 export GOCACHE=/var/vcap/data/golang-1.16-linu/cache
 mkdir -p "${GOCACHE}"
@@ -18,6 +22,6 @@ export PATH="${GOBIN}:${PATH}"
 export GOFLAGS=-mod=vendor
 export CGO_ENABLED=0
 
-go build ./cmd/hello-server -o hello-server
+go build -o hello-server ./cmd/hello-server
 
 cp hello-server "${BOSH_INSTALL_TARGET}"
