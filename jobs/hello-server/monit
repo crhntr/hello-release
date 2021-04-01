@@ -1,5 +1,6 @@
+# jobs/hello-server/monit
 check process hello-server
-  with pidfile /var/vcap/sys/run/bpm/hello-server/pid
+  with pidfile /var/vcap/sys/run/bpm/hello-server/hello-server.pid
   start program "/var/vcap/jobs/bpm/bin/bpm start hello-server"
   stop program "/var/vcap/jobs/bpm/bin/bpm stop hello-server"
   group vcap

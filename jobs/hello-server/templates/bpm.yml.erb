@@ -1,6 +1,6 @@
 processes:
 - name: hello-server
-  executable: /var/vcap/data/packages/hello-server/hello-server
+  executable: /var/vcap/packages/hello-server/hello-server
 
   env:
     PORT: "<%= p('port') %>"

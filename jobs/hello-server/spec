@@ -4,6 +4,7 @@ name: hello-server
 packages:
 - hello-server
 
+# jobs/hello-server/spec
 templates:
   bpm.yml.erb: config/bpm.yml
 
