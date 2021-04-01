@@ -41,7 +41,6 @@ cd examples/tile || exit 1
   rm stemcell.tgz
 
   om upload-product --product "tile-${TILE_VERSION}.pivotal"
-  rm tile-*.pivotal
   om stage-product --product-name=hello --product-version="${TILE_VERSION}"
   om apply-changes
 cd - || exit 1

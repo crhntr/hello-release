@@ -16,6 +16,7 @@ serial: false
 
 releases:
 - $( release "hello-release" )
+- $( release "bpm" )
 
 stemcell_criteria: $( stemcell )
 

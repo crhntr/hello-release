@@ -5,6 +5,7 @@ description: HTTP Server
 
 templates:
 - $( job "hello-server" )
+- $( job "bpm" )
 
 static_ip: 1
 dynamic_ip: 0

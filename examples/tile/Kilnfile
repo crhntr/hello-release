@@ -2,3 +2,4 @@
 slug: crhntr-hello
 releases:
   - name: hello-release
+  - name: bpm
