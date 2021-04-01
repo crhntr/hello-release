@@ -9,3 +9,5 @@ dev_releases
 blobs
 bin
 src/vendor
+*.pivotal
+*.pivotal.sha256
