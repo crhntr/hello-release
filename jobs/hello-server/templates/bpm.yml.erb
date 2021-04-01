@@ -1,0 +1,18 @@
+processes:
+- name: hello-server
+  executable: /var/vcap/data/packages/hello-server/hello-server
+
+  env:
+    PORT: "<%= p('port') %>"
+
+  limits:
+    processes: 10
+
+  ephemeral_disk: true
+
+  additional_volumes:
+  - path: /var/vcap/data/sockets
+    writable: true
+
+  capabilities:
+  - NET_BIND_SERVICE

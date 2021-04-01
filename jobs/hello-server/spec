@@ -1,11 +1,11 @@
 ---
 name: hello-server
 
-templates:
-  ctl.erb: bin/ctl
-
 packages:
 - hello-server
+
+templates:
+  bpm.yml.erb: config/bpm.yml
 
 properties:
   port:

@@ -27,4 +27,4 @@ instance_groups:
       - name: hello-server
         release: hello-release
         properties:
-          port: 80
+          port: 8080

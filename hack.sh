@@ -23,7 +23,7 @@ rm -f examples/tile/release/hello-release-*.pivotal
 bosh export-release \
   "hello-release/${BOSH_RELEASE_VERSION}" \
   "ubuntu-xenial/${STEMCELL_VERSION}" \
-  --dir=examples/tile/release
+  --dir=examples/tile/releases
 
 # Deploy tile with release compiled with INITIAL_STEMCELL
 
@@ -40,7 +40,7 @@ cd examples/tile || exit 1
 
   rm stemcell.tgz
 
-  om upload-product --product tile-*.pivotal
+  om upload-product --product "tile-${TILE_VERSION}.pivotal"
   rm tile-*.pivotal
   om stage-product --product-name=hello --product-version="${TILE_VERSION}"
   om apply-changes
