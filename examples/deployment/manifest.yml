@@ -12,7 +12,7 @@ stemcells:
     version: latest
 releases:
   - name: hello-release
-    version: 0.1.0
+    version: 0.2.0
     url: git+https://github.com/crhntr/hello-release
 instance_groups:
   - name: hello
