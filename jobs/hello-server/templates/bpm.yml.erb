@@ -1,3 +1,4 @@
+---
 processes:
 - name: hello-server
   executable: /var/vcap/packages/hello-server/hello-server
@@ -7,6 +8,7 @@ processes:
 
   limits:
     processes: 10
+    open_files: 1000
 
   ephemeral_disk: true
 

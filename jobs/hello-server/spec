@@ -10,5 +10,5 @@ templates:
 
 properties:
   port:
-    description: HTTP Server Port
-    default: "8080"
+    description: "HTTP Server Port"
+    default: 8080
