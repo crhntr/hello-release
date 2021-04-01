@@ -21,7 +21,7 @@ See: ./examples/tile/.
 
 - Create a release tarball and copy it to `./examples/tile/releases`
 - (optional) Change the stemcell version in the Kilnfile.lock.
-- Use `kiln bake` to create it.
+- Use `kiln bake --version=0.2.0` to create it.
 - Upload to Ops Manger
 - Configure the network stuff
 - Hit apply changes... take a walk
