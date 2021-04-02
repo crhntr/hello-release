@@ -15,6 +15,7 @@ rank: 90
 serial: false
 
 releases:
+- $( release "hello-duniya-release" )
 - $( release "hello-release" )
 - $( release "bpm" )
 
@@ -22,6 +23,7 @@ stemcell_criteria: $( stemcell )
 
 job_types:
 - $( instance_group "hello-server" )
+- $( instance_group "hello-duniya-server" )
 
 runtime_configs: []
 property_blueprints: []

@@ -8,6 +8,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/crhntr/httplog"
 )
 
 func main() {
@@ -17,7 +19,7 @@ func main() {
 
 	mux.HandleFunc("/", indexPage)
 
-	log.Fatal(http.ListenAndServe(":"+port, requireGetMethod(mux)))
+	log.Fatal(http.ListenAndServe(":"+port, httplog.Wrap(requireGetMethod(mux))))
 }
 
 //go:embed index.gohtml

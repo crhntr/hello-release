@@ -1,10 +1,10 @@
-name: hello-server
-label: Server
-resource_label: Server
+name: hello-duniya-server
+label: Duniya
+resource_label: Duniya
 description: HTTP Server
 
 templates:
-- $( job "hello-server" )
+- $( job "hello-duniya" )
 - $( job "bpm" )
 
 static_ip: 1

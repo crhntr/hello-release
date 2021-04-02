@@ -1,5 +1,6 @@
 ---
 slug: crhntr-hello
 releases:
+  - name: hello-duniya-release
   - name: hello-release
   - name: bpm
