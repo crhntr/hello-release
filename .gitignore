@@ -8,6 +8,5 @@ dev_releases
 .blobs
 blobs
 bin
-src/vendor
 *.pivotal
 *.pivotal.sha256
