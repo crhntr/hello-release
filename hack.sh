@@ -21,8 +21,8 @@ bosh deploy ./examples/deployment/manifest.yml
 rm -f examples/tile/release/hello-release-*.pivotal
 
 bosh export-release \
-  "hello-release/${BOSH_RELEASE_VERSION}" \
-  "ubuntu-xenial/${STEMCELL_VERSION}" \
+  "hello-release/0.11.0" \
+  "ubuntu-xenial/621.23" \
   --dir=examples/tile/releases
 
 # Deploy tile with release compiled with INITIAL_STEMCELL
