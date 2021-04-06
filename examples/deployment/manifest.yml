@@ -9,7 +9,7 @@ update:
 stemcells:
   - alias: default
     os: ubuntu-xenial
-    version: 621.23
+    version: 621.26
 releases:
   - name: hello-release
     version: latest
