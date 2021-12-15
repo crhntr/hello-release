@@ -15,34 +15,46 @@ import (
 func main() {
 	port := os.Getenv("PORT")
 
-	mux := new(http.ServeMux)
-
-	mux.HandleFunc("/", indexPage)
+	mux := http.NewServeMux()
+	routes(mux)
 
 	log.Fatal(http.ListenAndServe(":"+port, httplog.Wrap(requireGetMethod(mux))))
+}
+
+func routes(mux *http.ServeMux) {
+	mux.HandleFunc("/", indexPage(
+		template.Must(template.New("index.html").Parse(indexPageSource)),
+		log.Default(),
+	))
+}
+
+//go:generate go run github.com/maxbrunsfeld/counterfeiter/v6 -generate
+//counterfeiter:generate -o ./fakes/execute.go --fake-name Execute . executer
+//counterfeiter:generate -o ./fakes/linePrinter.go --fake-name PrintLn . linePrinter
+
+type executer interface {
+	Execute(w io.Writer, d interface{}) error
+}
+
+type linePrinter interface {
+	Println(...interface{})
 }
 
 //go:embed index.gohtml
 var indexPageSource string
 
-func indexPage(res http.ResponseWriter, req *http.Request) {
-	t, err := template.New("index.html").Parse(indexPageSource)
-	if err != nil {
-		log.Println("index page failed to parse:", err)
-		http.Error(res, "internal error: failed to parse template", http.StatusInternalServerError)
-		return
+func indexPage(t executer, logger linePrinter) http.HandlerFunc {
+	return func(res http.ResponseWriter, req *http.Request) {
+		var buf bytes.Buffer
+		err := t.Execute(&buf, struct{}{})
+		if err != nil {
+			logger.Println("index page failed to render:", err)
+			http.Error(res, "failed to render template", http.StatusInternalServerError)
+			return
+		}
+		res.WriteHeader(http.StatusOK)
+		_, _ = io.Copy(res, &buf)
 	}
-
-	var buf bytes.Buffer
-	err = t.ExecuteTemplate(&buf, "index.html", struct{}{})
-	if err != nil {
-		log.Println("index page failed to render:", err)
-		http.Error(res, "internal error: failed to render template", http.StatusInternalServerError)
-		return
-	}
-
-	res.WriteHeader(http.StatusOK)
-	_, _ = io.Copy(res, &buf)
 }
 
 func requireGetMethod(next http.Handler) http.HandlerFunc {
