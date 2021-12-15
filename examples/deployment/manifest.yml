@@ -13,12 +13,9 @@ stemcells:
 releases:
   - name: hello-release
     version: latest
-  - name: hello-duniya-release
-    version: 0.2.0
   - name: bpm
     version: latest
 instance_groups:
-    # should be called world
   - name: hello
     azs: [z1]
     instances: 1
@@ -30,21 +27,6 @@ instance_groups:
     jobs:
       - name: hello-server
         release: hello-release
-        properties:
-          port: 8080
-      - name: bpm
-        release: bpm
-  - name: duniya
-    azs: [z1]
-    instances: 1
-    stemcell: default
-    vm_type: small
-    vm_extensions: [internet-required]
-    networks:
-      - name: default
-    jobs:
-      - name: hello-duniya
-        release: hello-duniya-release
         properties:
           port: 8080
       - name: bpm
