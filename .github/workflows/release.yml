@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+
+  images:
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.cache.outputs.images_sha }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+
