@@ -19,7 +19,7 @@ See: ./examples/deployment/manifest.yml
 
 See: https://github.com/crhntr/hello-tile
 
-- Create a release tarball and copy it to `./examples/tile/releases`
+- Create a release tarball and copy it to `../hello-tile/releases`
 - (optional) Change the stemcell version in the Kilnfile.lock.
 - Use `kiln bake --version=0.2.0` to create it.
 - Upload to Ops Manger
