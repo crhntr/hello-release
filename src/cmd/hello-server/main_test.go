@@ -3,13 +3,14 @@ package main
 import (
 	"bytes"
 	"errors"
-	"github.com/crhntr/hello-release/src/cmd/hello-server/fakes"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/crhntr/hello-release/src/cmd/hello-server/fakes"
 )
 
 func Test_requireGetMethod(t *testing.T) {
