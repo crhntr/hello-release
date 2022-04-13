@@ -24,7 +24,6 @@ jobs:
 #        go test -v ./...
 
   bosh:
-    needs: [go]
     runs-on: ubuntu-latest
     steps:
       - name: create release
