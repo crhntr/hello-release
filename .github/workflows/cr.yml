@@ -31,7 +31,7 @@ jobs:
 
   bosh_release:
     name: "Create BOSH Release"
-    needs: [ build_test ]
+    needs: [ go_test ]
     runs-on: ubuntu-latest
     steps:
       - name: checkout hello-release
