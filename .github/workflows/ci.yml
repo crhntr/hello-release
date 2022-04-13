@@ -8,25 +8,25 @@ on:
 
 jobs:
 
-  build_test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: checkout hello-release
-      uses: actions/checkout@v2
-
-    - name: set up go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.17
-
-    - name: build and test
-      working-directory: src
-      run: |
-        go build -v ./cmd/hello-server
-        go test -v ./...
+#  build_test:
+#    runs-on: ubuntu-latest
+#    steps:
+#    - name: checkout hello-release
+#      uses: actions/checkout@v2
+#
+#    - name: set up go
+#      uses: actions/setup-go@v3
+#      with:
+#        go-version: 1.17
+#
+#    - name: build and test
+#      working-directory: src
+#      run: |
+#        go build -v ./cmd/hello-server
+#        go test -v ./...
 
   test_bosh_release:
-    needs: [ build_test ]
+    # needs: [ build_test ]
     runs-on: ubuntu-latest
     steps:
       - name: checkout hello-release
@@ -38,7 +38,6 @@ jobs:
           tarball: hello-release.tgz
           version: '0.1.0'
           timestamp_version: true
-
 
       - name: show tree
         run: |
