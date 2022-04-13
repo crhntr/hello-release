@@ -8,20 +8,24 @@ on:
 
 jobs:
 
-  src:
+#  go:
+#    runs-on: ubuntu-latest
+#    steps:
+#    - name: checkout hello-release
+#      uses: actions/checkout@v2
+#
+#    - name: set up go
+#      uses: actions/setup-go@v3
+#
+#    - name: build and test
+#      working-directory: src
+#      run: |
+#        go build -v ./cmd/hello-server
+#        go test -v ./...
+
+  bosh:
+    needs: [go]
     runs-on: ubuntu-latest
     steps:
-    - name: checkout hello-release
-      uses: actions/checkout@v2
-
-    - name: set up go
-      uses: actions/setup-go@v3
-
-    - name: build and test
-      working-directory: src
-      run: |
-        go build -v ./cmd/hello-server
-        go test -v ./...
-
-    - name: create release
-      uses: ./.github/actions/create-release
+      - name: create release
+        uses: ./.github/actions/create-release
