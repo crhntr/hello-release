@@ -1,5 +1,5 @@
 ---
-name: Continuous Release
+name: Release
 
 on:
   push:
@@ -37,6 +37,12 @@ jobs:
       - name: checkout hello-release
         uses: actions/checkout@v2
 
+      - name: configure git
+        run: |
+          git config --global "url.https://${GITHUB_TOKEN}@github.com/.insteadOf" "https://github.com/"
+          git config --global user.name "Christopher Hunter"
+          git config --global user.email "8398225+crhntr@users.noreply.github.com"
+
       - name: create release
         uses: ./.github/actions/create-release
         with:
@@ -44,17 +50,9 @@ jobs:
           version: ${{ github.ref_name }}
           final: true
 
-      - name: commit
-        env:
-          RELEASE_VERSION: ${{ github.ref_name }}
+      - name: push created release
         run: |
-          git config --global "url.https://${GITHUB_TOKEN}@github.com/.insteadOf" "https://github.com/"
-          git config --global user.name "Christopher Hunter"
-          git config --global user.email "8398225+crhntr@users.noreply.github.com"
-          
-          git add .
-          git commit -m "Create release ${RELEASE_VERSION}"
-          git push -u origin HEAD
+          git push
 
       - uses: actions/upload-artifact@v3
         with:
