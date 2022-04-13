@@ -27,6 +27,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout hello-release
-        uses: actions/checkout
+        uses: actions/checkout@v2
       - name: create release
         uses: ./.github/actions/create-release
