@@ -2,9 +2,12 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        type: string
 
 jobs:
   go_test:
@@ -47,7 +50,7 @@ jobs:
         uses: ./.github/actions/create-release
         with:
           tarball: hello-release.tgz
-          version: ${{ github.ref_name }}
+          version: ${{ github.event.inputs.version }}
           final: true
 
       - name: push created release
