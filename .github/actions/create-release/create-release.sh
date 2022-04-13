@@ -28,4 +28,4 @@ if [ -n "${INPUT_DIR}" ]; then
   bosh_args+=("--dir" "${INPUT_DIR}")
 fi
 
-bosh "${bosh_args[@]}"
+bosh create-release "${bosh_args[@]}"
