@@ -16,6 +16,8 @@ jobs:
 
     - name: set up go
       uses: actions/setup-go@v3
+      with:
+        go-version: 1.17
 
     - name: build and test
       working-directory: src
@@ -29,6 +31,7 @@ jobs:
     steps:
       - name: checkout hello-release
         uses: actions/checkout@v2
+
       - name: create release
         uses: ./.github/actions/create-release
         with:
