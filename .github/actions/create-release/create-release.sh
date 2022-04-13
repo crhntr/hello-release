@@ -19,7 +19,7 @@ if [ -n "${INPUT_TARBALL}" ]; then
   bosh_args+=("--tarball" "${INPUT_TARBALL}")
 fi
 if [ "${INPUT_FINAL}" = 'true' ]; then
-  bosh_args+=("--tarball")
+  bosh_args+=("--final")
 fi
 if [ -n "${INPUT_VERSION}" ]; then
   bosh_args+=("--version" "${INPUT_VERSION}")
@@ -34,3 +34,7 @@ if [ "${INPUT_SHA2}" = 'false' ]; then
 fi
 
 bosh --non-interactive create-release "${bosh_args[@]}"
+
+if [ -f "${INPUT_TARBALL}" ]; then
+  chmod 666 "${INPUT_TARBALL}"
+fi
