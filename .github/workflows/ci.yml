@@ -8,49 +8,24 @@ on:
 
 jobs:
 
-#  go_test:
-#    name: "Test Go Source"
-#    runs-on: ubuntu-latest
-#    steps:
-#    - name: checkout hello-release
-#      uses: actions/checkout@v2
-#
-#    - name: set up go
-#      uses: actions/setup-go@v3
-#      with:
-#        go-version: 1.17
-#
-#    - name: test
-#      working-directory: src
-#      run: |
-#        go test -v ./...
-#
-#    - name: build
-#      working-directory: src
-#      run: |
-#        go build -v ./cmd/hello-server
-
-  bosh_release:
-    name: "Create BOSH Release"
-    # needs: [ build_test ]
+  go_test:
+    name: "Test Go Source"
     runs-on: ubuntu-latest
     steps:
-      - name: checkout hello-release
-        uses: actions/checkout@v2
+    - name: checkout hello-release
+      uses: actions/checkout@v2
 
-      - name: create release
-        uses: ./.github/actions/create-release
-        with:
-          tarball: hello-release.tgz
-          version: '0.1.0'
-          timestamp_version: true
+    - name: set up go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.17
 
-      - name: show tree
-        run: |
-          tree
-          ls -la hello-release.tgz
+    - name: test
+      working-directory: src
+      run: |
+        go test -v ./...
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: hello-release-tarball
-          path: hello-release.tgz
+    - name: build
+      working-directory: src
+      run: |
+        go build -v ./cmd/hello-server

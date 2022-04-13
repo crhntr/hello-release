@@ -1,0 +1,62 @@
+---
+name: Continuous Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  go_test:
+    name: "Test Go Source"
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout hello-release
+        uses: actions/checkout@v2
+
+      - name: set up go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17
+
+      - name: test
+        working-directory: src
+        run: |
+          go test -v ./...
+
+      - name: build
+        working-directory: src
+        run: |
+          go build -v ./cmd/hello-server
+
+  bosh_release:
+    name: "Create BOSH Release"
+    needs: [ build_test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout hello-release
+        uses: actions/checkout@v2
+
+      - name: create release
+        uses: ./.github/actions/create-release
+        with:
+          tarball: hello-release.tgz
+          version: ${{ github.ref_name }}
+          final: true
+
+      - name: commit
+        env:
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: |
+          git config --global "url.https://${GITHUB_TOKEN}@github.com/.insteadOf" "https://github.com/"
+          git config --global user.name "Christopher Hunter"
+          git config --global user.email "8398225+crhntr@users.noreply.github.com"
+          
+          git add .
+          git commit -m "Create release ${RELEASE_VERSION}"
+          git push -u origin HEAD
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hello-release-tarball
+          path: hello-release.tgz

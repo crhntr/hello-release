@@ -10,3 +10,4 @@ blobs
 bin
 *.pivotal
 *.pivotal.sha256
+*-release*.tgz
