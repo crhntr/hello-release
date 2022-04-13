@@ -28,4 +28,9 @@ if [ -n "${INPUT_DIR}" ]; then
   bosh_args+=("--dir" "${INPUT_DIR}")
 fi
 
-bosh create-release "${bosh_args[@]}"
+export BOSH_SHA2=""
+if [ "${INPUT_SHA2}" = 'false' ]; then
+  unset BOSH_SHA2
+fi
+
+bosh --non-interactive create-release "${bosh_args[@]}"

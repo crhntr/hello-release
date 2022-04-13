@@ -23,6 +23,10 @@ inputs:
   force:
     description: 'Ignore Git dirty state check'
     required: false
+  sha2:
+    description: 'Use SHA256 checksums'
+    required: false
+    default: 'true'
 outputs:
   bosh_version:
     description: 'The version of the BOSH CLI.'
