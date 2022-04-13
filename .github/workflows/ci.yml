@@ -1,0 +1,27 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  src:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout hello-release
+      uses: actions/checkout@v2
+
+    - name: set up go
+      uses: actions/setup-go@v3
+
+    - name: build and test
+      working-directory: src
+      run: |
+        go build -v ./cmd/hello-server
+        go test -v ./...
+
+    - name: create release
+      uses: ./.github/actions/create-release

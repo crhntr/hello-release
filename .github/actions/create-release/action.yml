@@ -1,0 +1,15 @@
+# action.yml
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  dir: # id of output
+    description: 'Release directory path if not current working directory'
+    required: true
+    default: '.'
+outputs:
+  bosh_version:
+    description: 'The version of the BOSH CLI.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  entrypoint: /create-release.sh
