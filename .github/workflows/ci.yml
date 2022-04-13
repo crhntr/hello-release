@@ -8,7 +8,8 @@ on:
 
 jobs:
 
-#  build_test:
+#  go_test:
+#    name: "Test Go Source"
 #    runs-on: ubuntu-latest
 #    steps:
 #    - name: checkout hello-release
@@ -19,13 +20,18 @@ jobs:
 #      with:
 #        go-version: 1.17
 #
-#    - name: build and test
+#    - name: test
+#      working-directory: src
+#      run: |
+#        go test -v ./...
+#
+#    - name: build
 #      working-directory: src
 #      run: |
 #        go build -v ./cmd/hello-server
-#        go test -v ./...
 
-  test_bosh_release:
+  bosh_release:
+    name: "Create BOSH Release"
     # needs: [ build_test ]
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +48,7 @@ jobs:
       - name: show tree
         run: |
           tree
+          ls -la hello-release.tgz
 
       - uses: actions/upload-artifact@v3
         with:
