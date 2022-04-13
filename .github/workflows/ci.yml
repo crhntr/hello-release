@@ -26,5 +26,7 @@ jobs:
   bosh:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout hello-release
+        uses: actions/checkout
       - name: create release
         uses: ./.github/actions/create-release
