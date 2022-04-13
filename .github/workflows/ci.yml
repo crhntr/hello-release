@@ -39,7 +39,12 @@ jobs:
           version: '0.1.0'
           timestamp_version: true
 
+
+      - name: show tree
+        run: |
+          tree
+
       - uses: actions/upload-artifact@v3
         with:
-          name: save tarball
+          name: hello-release-tarball
           path: hello-release.tgz
