@@ -30,3 +30,7 @@ jobs:
         uses: actions/checkout@v2
       - name: create release
         uses: ./.github/actions/create-release
+        with:
+          tarball: hello-release.tgz
+          version: '0.1.0'
+          timestamp_version: true
