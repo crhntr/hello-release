@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: Checkout Hello Release
         uses: actions/checkout@v2
+        with:
+          set-safe-directory: 'true'
 
       - name: Configure git
         run: |
@@ -54,6 +56,11 @@ jobs:
         env:
           BOSH_RELEASE_VERSION: ${{ github.event.inputs.version }}
         run: |
+          set -euo pipefail
+
+          git stash
+          git checkout main
+          git stash pop
           git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
           git push
 
