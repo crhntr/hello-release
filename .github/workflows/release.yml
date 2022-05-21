@@ -38,7 +38,6 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --global "url.https://${GITHUB_TOKEN}@github.com/.insteadOf" "https://github.com/"
           git config --global user.name "Christopher Hunter"
           git config --global user.email "8398225+crhntr@users.noreply.github.com"
 
@@ -53,8 +52,6 @@ jobs:
         env:
           BOSH_RELEASE_VERSION: ${{ github.event.inputs.version }}
         run: |
-          git config --global user.name 'Christopher Hunter'
-          git config --global user.email '8398225+crhntr@users.noreply.github.com'
           git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
           git push
 
