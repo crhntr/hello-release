@@ -8,7 +8,8 @@ on:
 
 jobs:
 
-  src:
+  go_test:
+    name: "Test Go Source"
     runs-on: ubuntu-latest
     steps:
     - name: checkout hello-release
@@ -16,12 +17,15 @@ jobs:
 
     - name: set up go
       uses: actions/setup-go@v3
+      with:
+        go-version: 1.17
 
-    - name: build and test
+    - name: test
+      working-directory: src
+      run: |
+        go test -v ./...
+
+    - name: build
       working-directory: src
       run: |
         go build -v ./cmd/hello-server
-        go test -v ./...
-
-    - name: create release
-      uses: ./.github/actions/create-release

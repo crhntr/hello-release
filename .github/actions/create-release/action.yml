@@ -2,13 +2,36 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  dir: # id of output
+  dir:
     description: 'Release directory path if not current working directory'
-    required: true
-    default: '.'
+    required: false
+  name:
+    description: 'Custom release name'
+    required: false
+  version:
+    description: 'Custom release version (e.g.: 1.0.0, 1.0-beta.2+dev.10)'
+    required: false
+  timestamp_version:
+    description: 'Create release with the timestamp as the dev version (e.g.: 1+dev.TIMESTAMP)'
+    required: false
+  tarball:
+    description: 'Create release tarball at path (e.g. release.tgz)'
+    required: false
+  final:
+    description: 'Make it a final release'
+    required: false
+  force:
+    description: 'Ignore Git dirty state check'
+    required: false
+  sha2:
+    description: 'Use SHA256 checksums'
+    required: false
+    default: 'true'
 outputs:
   bosh_version:
     description: 'The version of the BOSH CLI.'
+  release_version:
+    description: 'The version of the new bosh release.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
