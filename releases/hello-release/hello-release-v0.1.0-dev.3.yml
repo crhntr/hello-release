@@ -1,0 +1,27 @@
+name: hello-release
+version: v0.1.0-dev.3
+commit_hash: 19d989f
+uncommitted_changes: false
+jobs:
+- name: hello-server
+  version: 4b55a6cdaf38a56a3e9d9dc63dbad94277c1fe145e12e4a6e434df9655204627
+  fingerprint: 4b55a6cdaf38a56a3e9d9dc63dbad94277c1fe145e12e4a6e434df9655204627
+  sha1: sha256:a9aad589db8a6bb179f3fdb45e3a36c83d87e7c712b5ffd4a18354319ebc1b92
+  packages:
+  - hello-server
+packages:
+- name: golang-1-linux
+  version: fab525daa88043f67a74c80464432a37cfc78caf01611d67a65666b2574569bc
+  fingerprint: fab525daa88043f67a74c80464432a37cfc78caf01611d67a65666b2574569bc
+  sha1: sha256:4ec56cefc0c68cfe19efca26da769e821104b426835283ed936ba7702c929579
+  dependencies: []
+- name: hello-server
+  version: 5522325ab623eb6eafa2519239c41205acbbece25d5a55b32a5f286d2fa0cbe5
+  fingerprint: 5522325ab623eb6eafa2519239c41205acbbece25d5a55b32a5f286d2fa0cbe5
+  sha1: sha256:2624a965270ff271fa70605971c15a8b8d2e1759a432c599a5669081dda31b39
+  dependencies:
+  - golang-1-linux
+license:
+  version: defd65b250e058f49ed3fd8275d968e5ae1142a8a3d4b6b02fbf594cf8bde936
+  fingerprint: defd65b250e058f49ed3fd8275d968e5ae1142a8a3d4b6b02fbf594cf8bde936
+  sha1: sha256:75a77d47c501c188e92839ee6c799a7ac782fe1a1e6e0e0b4f7f3a389c87bdd6

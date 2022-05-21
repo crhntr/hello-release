@@ -41,7 +41,12 @@ if [ "${INPUT_SHA2}" = 'false' ]; then
   unset BOSH_SHA2
 fi
 
+export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.yml
+echo "${CONFIG_PRIVATE_JSON_KEY}" > "${GOOGLE_APPLICATION_CREDENTIALS}"
+
 bosh --non-interactive create-release "${bosh_args[@]}"
+
+rm "${GOOGLE_APPLICATION_CREDENTIALS}"
 
 if [ -f "${INPUT_TARBALL}" ]; then
   chmod 666 "${INPUT_TARBALL}"
