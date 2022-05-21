@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euxo pipefail
+set -euo pipefail
 
 cd "${GITHUB_WORKSPACE}" || exit 1
 
@@ -51,7 +51,7 @@ blobstore:
 
 export PRIVATE_CONFIG_json_key="${GCS_SERVICE_ACCOUNT}"
 
-bosh int config/private.yml --vars-env PRIVATE_CONFIG
+bosh int --vars-env PRIVATE_CONFIG config/private.yml | sponge config/private.yml
 
 bosh --non-interactive create-release "${bosh_args[@]}"
 
