@@ -2,12 +2,8 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version'
-        required: true
-        type: string
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
 
 jobs:
   go_test:
@@ -37,27 +33,33 @@ jobs:
     needs: [ go_test ]
     runs-on: ubuntu-latest
     steps:
-      - name: checkout hello-release
+      - name: Checkout Hello Release
         uses: actions/checkout@v2
 
-      - name: configure git
+      - name: Configure git
         run: |
           git config --global "url.https://${GITHUB_TOKEN}@github.com/.insteadOf" "https://github.com/"
           git config --global user.name "Christopher Hunter"
           git config --global user.email "8398225+crhntr@users.noreply.github.com"
 
-      - name: create release
+      - name: Create BOSH Release
         uses: ./.github/actions/create-release
         with:
           tarball: hello-release.tgz
           version: ${{ github.event.inputs.version }}
           final: true
 
-      - name: push created release
+      - name: Commit Result
+        env:
+          BOSH_RELEASE_VERSION: ${{ github.event.inputs.version }}
         run: |
+          git config --global user.name 'Christopher Hunter'
+          git config --global user.email '8398225+crhntr@users.noreply.github.com'
+          git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
           git push
 
-      - uses: actions/upload-artifact@v3
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: hello-release-tarball
-          path: hello-release.tgz
+          files: hello-release.tgz
