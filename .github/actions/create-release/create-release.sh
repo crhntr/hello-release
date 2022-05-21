@@ -41,6 +41,18 @@ if [ "${INPUT_SHA2}" = 'false' ]; then
   unset BOSH_SHA2
 fi
 
+echo "---
+blobstore:
+  options:
+    credentials_source: static
+    json_key: |
+      (( json_key ))
+" >> config/private.yml
+
+export PRIVATE_CONFIG_json_key="${GCS_SERVICE_ACCOUNT}"
+
+bosh int config/private.yml --vars-env PRIVATE_CONFIG
+
 bosh --non-interactive create-release "${bosh_args[@]}"
 
 if [ -f "${INPUT_TARBALL}" ]; then
