@@ -51,7 +51,8 @@ blobstore:
 
 export PRIVATE_CONFIG_json_key="${GCS_SERVICE_ACCOUNT}"
 
-bosh int --vars-env PRIVATE_CONFIG config/private.yml | sponge config/private.yml
+bosh int --vars-env PRIVATE_CONFIG config/private.yml > config/private.yml.result
+mv config/private.yml{.result,}
 
 bosh --non-interactive create-release "${bosh_args[@]}"
 
