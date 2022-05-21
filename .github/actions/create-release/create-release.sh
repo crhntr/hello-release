@@ -54,6 +54,8 @@ export PRIVATE_CONFIG_json_key="${GCS_SERVICE_ACCOUNT}"
 bosh int --vars-env PRIVATE_CONFIG config/private.yml > config/private.yml.result
 mv config/private.yml{.result,}
 
+ls -la config/private.yml
+
 bosh --non-interactive create-release "${bosh_args[@]}"
 
 if [ -f "${INPUT_TARBALL}" ]; then
