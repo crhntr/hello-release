@@ -9,7 +9,7 @@ on:
 jobs:
 
   go_test:
-    name: "Test Go Source"
+    name: "Run Source Code Unit Tests"
     runs-on: ubuntu-latest
     steps:
     - name: checkout hello-release
