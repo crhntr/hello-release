@@ -44,7 +44,7 @@ jobs:
       - name: Create BOSH Release
         uses: ./.github/actions/create-release
         env:
-          GCS_SERVICE_ACCOUNT: ${{ secrets.GCS_SERVICE_ACCOUNT }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCS_SERVICE_ACCOUNT }}
         with:
           tarball: hello-release.tgz
           version: ${{ github.event.inputs.version }}
