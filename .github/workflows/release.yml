@@ -42,7 +42,7 @@ jobs:
         run: |
           git config --global user.name "Christopher Hunter"
           git config --global user.email "8398225+crhntr@users.noreply.github.com"
-          
+
           git fetch origin main
           git checkout main
 
@@ -60,9 +60,7 @@ jobs:
           BOSH_RELEASE_VERSION: ${{ github.event.inputs.version }}
         run: |
           set -euo pipefail
-
-          git add releases/
-          git commit -m "Create Release ${BOSH_RELEASE_VERSION}"
+          git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
           git push
 
       - name: Create GitHub Release
