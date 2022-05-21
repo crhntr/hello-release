@@ -42,6 +42,9 @@ jobs:
         run: |
           git config --global user.name "Christopher Hunter"
           git config --global user.email "8398225+crhntr@users.noreply.github.com"
+          
+          git fetch origin main
+          git checkout main
 
       - name: Create BOSH Release
         uses: ./.github/actions/create-release
@@ -58,8 +61,6 @@ jobs:
         run: |
           set -euo pipefail
 
-          git fetch origin main
-          git checkout main
           git add releases/
           git commit -m "Create Release ${BOSH_RELEASE_VERSION}"
           git push
