@@ -1,4 +1,6 @@
-#!/bin/bash -
+#!/bin/bash
+
+set -euxo pipefail
 
 cd "${GITHUB_WORKSPACE}" || exit 1
 
