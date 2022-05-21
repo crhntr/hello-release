@@ -59,7 +59,9 @@ jobs:
           set -euo pipefail
 
           git stash
+          git fetch origin main
           git checkout main
+          git pull --ff-only origin main
           git stash pop
           git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
           git push
