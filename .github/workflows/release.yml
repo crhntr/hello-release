@@ -53,13 +53,13 @@ jobs:
         env:
           CONFIG_PRIVATE_JSON_KEY: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
-          tarball: hello-release-${{ github.event.inputs.version }}.tgz
+          tarball: hello-release-${{ steps.vars.outputs.tag }}.tgz
           version: ${{ steps.vars.outputs.tag }}
           final: true
 
       - name: Commit Result
         env:
-          BOSH_RELEASE_VERSION: ${{ github.event.inputs.version }}
+          BOSH_RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
         run: |
           set -euo pipefail
           
