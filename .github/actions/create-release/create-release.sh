@@ -1,5 +1,9 @@
 #!/bin/bash -
 
+cd "${GITHUB_WORKSPACE}" || exit 1
+
+ls -la
+
 export BOSH_VERSION
 BOSH_VERSION=$(bosh --version | awk '{print $2}')
 echo "BOSH Version: ${BOSH_VERSION}"
