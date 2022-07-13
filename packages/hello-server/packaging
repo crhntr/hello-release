@@ -1,19 +1,5 @@
 #!/bin/bash -eu
-
-# "I am GOROOT"
-export GOROOT=$(readlink -nf /var/vcap/packages/golang-1.16-linux)
-export PATH="${GOROOT}/bin:$PATH"
-
-# This is for use of Go modules.
-export GOCACHE=/var/vcap/data/golang-1.16-linu/cache
-mkdir -p "${GOCACHE}"
-
-# Setup GOPATH (required to run Go build)
-export TEMPORARY_GOPATH="${PWD}/tmp"
-mkdir -p "${TEMPORARY_GOPATH}"
-export GOPATH="${TEMPORARY_GOPATH}"
-export GOBIN="${GOPATH}/bin"
-export PATH="${GOBIN}:${PATH}"
+source /var/vcap/packages/golang-*-linux/bosh/compile.env
 
 # Disable internet access
 export GOFLAGS=-mod=vendor
