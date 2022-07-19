@@ -30,7 +30,7 @@ if [ "${INPUT_FINAL}" = 'true' ]; then
   bosh_args+=("--final")
 fi
 if [ -n "${INPUT_VERSION}" ]; then
-  bosh_args+=("--version" "${INPUT_VERSION}")
+  bosh_args+=("--version" "${INPUT_VERSION#"v"}")
 fi
 if [ -n "${INPUT_DIR}" ]; then
   bosh_args+=("--dir" "${INPUT_DIR}")
