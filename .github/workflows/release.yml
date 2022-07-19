@@ -75,4 +75,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: hello-release-${{ steps.vars.outputs.tag }}.tgz
+          files: hello-release-*.tgz
