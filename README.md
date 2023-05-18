@@ -12,7 +12,7 @@ See: ./examples/deployment/manifest.yml
 
 - Configure BOSH (for example with `eval "$(bbl print-env)`
 - Upload a release `bosh upload-release`
-- Upload a stemcell  `bosh upload-stemcell "${RECENT_STEMCELL_URL}"
+- Upload a stemcell  `bosh upload-stemcell "${RECENT_STEMCELL_URL}"`
 - Deploy `bosh deploy ./examples/deployment/manifest.yml`
 
 ### Tile
