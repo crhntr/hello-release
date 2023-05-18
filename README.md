@@ -12,7 +12,7 @@ See: ./examples/deployment/manifest.yml
 
 - Configure BOSH (for example with `eval "$(bbl print-env)`
 - Upload a release `bosh upload-release`
-- Upload a stemcell  `bosh upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent?v=621.117`
+- Upload a stemcell  `bosh upload-stemcell "${RECENT_STEMCELL_URL}"
 - Deploy `bosh deploy ./examples/deployment/manifest.yml`
 
 ### Tile
