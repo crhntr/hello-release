@@ -1,4 +1,6 @@
 builds:
   9bcde9f1-a48d-4944-538d-ca338402a587:
     version: v0.1.0-dev.3
+  c6c4e500-438d-4800-6d1f-afaa414079be:
+    version: v0.2.0
 format-version: "2"
