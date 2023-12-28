@@ -3,7 +3,7 @@ name: Release
 
 on:
   push:
-    tags: ['v[0-9]+.[0-9]+.[0-9]+*']
+    tags: ['build/v[0-9]+.[0-9]+.[0-9]+*']
 
 jobs:
   go_test:
@@ -46,7 +46,7 @@ jobs:
 
       - name: Parse Tag Name
         id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: echo ::set-output name=tag-version::${GITHUB_REF#refs/*/build/}
 
       - name: Create BOSH Release
         uses: ./.github/actions/create-release
@@ -54,22 +54,8 @@ jobs:
           CONFIG_PRIVATE_JSON_KEY: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
           tarball: hello-release-${{ steps.vars.outputs.tag }}.tgz
-          version: ${{ steps.vars.outputs.tag }}
+          version: ${{ steps.vars.outputs.tag-version }}
           final: true
-
-      - name: Commit Result
-        env:
-          BOSH_RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: |
-          set -euo pipefail
-          
-          git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
-          git fetch origin main
-          git checkout main
-          git pull -r origin main
-          git checkout -
-          git rebase main
-          git push origin main
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1

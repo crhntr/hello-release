@@ -51,3 +51,11 @@ rm "${GOOGLE_APPLICATION_CREDENTIALS}"
 if [ -f "${INPUT_TARBALL}" ]; then
   chmod 666 "${INPUT_TARBALL}"
 fi
+
+if [ "${INPUT_FINAL}" = 'true' ]; then
+  git push origin --delete "${INPUT_VERSION}"
+  git pull --ff-only origin main
+  git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
+  git tag "${INPUT_VERSION}"
+  git push origin main "${INPUT_VERSION}"
+fi
