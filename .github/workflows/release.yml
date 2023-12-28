@@ -58,6 +58,6 @@ jobs:
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: hello-release-*.tgz
+          tag_name: ${{ steps.vars.outputs.tag-version }}
