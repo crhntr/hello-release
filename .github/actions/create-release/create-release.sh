@@ -62,6 +62,9 @@ if [ -f "${INPUT_TARBALL}" ]; then
 fi
 
 if [ "${INPUT_FINAL}" = 'true' ]; then
+  git config --global user.name "${GIT_USER_NAME}"
+  git config --global user.email "${GIT_USER_EMAIL}"
+
   git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
   git checkout main
   git pull --ff-only origin main

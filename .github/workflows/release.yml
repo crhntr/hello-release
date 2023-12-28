@@ -38,11 +38,6 @@ jobs:
         with:
           set-safe-directory: 'true'
 
-      - name: Configure git
-        run: |
-          git config --global user.name "Christopher Hunter"
-          git config --global user.email "8398225+crhntr@users.noreply.github.com"
-
       - name: Parse Tag Name
         id: vars
         run: echo "tag-version=${GITHUB_REF#refs/*/build/}" >> $GITHUB_OUTPUT
@@ -51,6 +46,8 @@ jobs:
         uses: ./.github/actions/create-release
         env:
           CONFIG_PRIVATE_JSON_KEY: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          GIT_USER_NAME: "Christopher Hunter"
+          GIT_USER_EMAIL: "8398225+crhntr@users.noreply.github.com"
         with:
           tarball: hello-release-${{ steps.vars.outputs.tag }}.tgz
           version: ${{ steps.vars.outputs.tag-version }}
