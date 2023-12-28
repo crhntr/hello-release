@@ -53,8 +53,9 @@ if [ -f "${INPUT_TARBALL}" ]; then
 fi
 
 if [ "${INPUT_FINAL}" = 'true' ]; then
-  git push origin --delete "${INPUT_VERSION}"
+  git stash
   git pull --ff-only origin main
+  git stash pop
   git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
   git tag "${INPUT_VERSION}"
   git push origin main "${INPUT_VERSION}"
