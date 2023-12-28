@@ -5,6 +5,7 @@ set -euo pipefail
 cd "${GITHUB_WORKSPACE}" || exit 1
 
 git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+git checkout -b create-release
 
 ls -la
 
@@ -53,10 +54,13 @@ if [ -f "${INPUT_TARBALL}" ]; then
 fi
 
 if [ "${INPUT_FINAL}" = 'true' ]; then
-  git stash
-  git pull --ff-only origin main
-  git stash pop
   git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
+  git checkout main
+  git pull --ff-only origin main
+  git checkout create-release
+  git rebase main
+  git checkout main
+  git merge --ff-only create-release
   git tag "${INPUT_VERSION}"
   git push origin main "${INPUT_VERSION}"
 fi
