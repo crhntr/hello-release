@@ -46,7 +46,7 @@ jobs:
 
       - name: Parse Tag Name
         id: vars
-        run: echo "tag-version::${GITHUB_REF#refs/*/build/}" >> $GITHUB_OUTPUT
+        run: echo "tag-version=${GITHUB_REF#refs/*/build/}" >> $GITHUB_OUTPUT
 
       - name: Create BOSH Release
         uses: ./.github/actions/create-release
