@@ -22,7 +22,8 @@ if [ -n "${INPUT_FORCE}" ]; then
   bosh_args+=("--force" "${INPUT_FORCE}")
 fi
 if [ "${INPUT_TIMESTAMP_VERSION}" = 'true' ]; then
-  bosh_args+=("--timestamp-version")
+  printf "INPUT_TIMESTAMP_VERSION not supported"
+  exit 1
 fi
 if [ -n "${INPUT_TARBALL}" ]; then
   bosh_args+=("--tarball" "${INPUT_TARBALL}")
@@ -30,9 +31,15 @@ fi
 if [ "${INPUT_FINAL}" = 'true' ]; then
   bosh_args+=("--final")
 fi
+
+export BOSH_RELEASE_VERSION
 if [ -n "${INPUT_VERSION}" ]; then
-  bosh_args+=("--version" "${INPUT_VERSION#"v"}")
+  BOSH_RELEASE_VERSION="${INPUT_VERSION#"v"}"
+  bosh_args+=("--version" "${BOSH_RELEASE_VERSION}")
+elif [ "${INPUT_TIMESTAMP_VERSION}" = 'true' ]; then
+   printf "required variable INPUT_VERSION not set"
 fi
+
 if [ -n "${INPUT_DIR}" ]; then
   bosh_args+=("--dir" "${INPUT_DIR}")
 fi
