@@ -65,12 +65,14 @@ if [ "${INPUT_FINAL}" = 'true' ]; then
   git config --global user.name "${GIT_USER_NAME}"
   git config --global user.email "${GIT_USER_EMAIL}"
 
+  set -x
   git commit -am "Create Release ${BOSH_RELEASE_VERSION}"
-  git checkout main
+  git fetch origin main
+  git switch main
   git pull --ff-only origin main
-  git checkout create-release
+  git switch create-release
   git rebase main
-  git checkout main
+  git switch main
   git merge --ff-only create-release
   git tag "${INPUT_VERSION}"
   git push origin main "${INPUT_VERSION}"
