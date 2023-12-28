@@ -3,6 +3,8 @@ builds:
     version: 0.2.1-dev.9
   9bcde9f1-a48d-4944-538d-ca338402a587:
     version: v0.1.0-dev.3
+  a5e4a7f1-1ab0-4551-4fc4-359d0ac18149:
+    version: 0.2.1-dev.10
   c5c4b9f7-abb9-485a-4185-610b8d02d0d2:
     version: 0.2.1-dev.8
   c6c4e500-438d-4800-6d1f-afaa414079be:
