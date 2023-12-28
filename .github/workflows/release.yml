@@ -49,7 +49,7 @@ jobs:
           GIT_USER_NAME: "Christopher Hunter"
           GIT_USER_EMAIL: "8398225+crhntr@users.noreply.github.com"
         with:
-          tarball: hello-release-${{ steps.vars.outputs.tag }}.tgz
+          tarball: hello-release-${{ steps.vars.outputs.tag-version }}.tgz
           version: ${{ steps.vars.outputs.tag-version }}
           final: true
 
