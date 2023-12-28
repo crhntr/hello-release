@@ -12,7 +12,7 @@ ls -la
 export BOSH_VERSION
 BOSH_VERSION=$(bosh --version | awk '{print $2}')
 echo "BOSH Version: ${BOSH_VERSION}"
-echo "::set-output name=bosh_version::${BOSH_VERSION}"
+echo "bosh_version=${BOSH_VERSION}" >> "${GITHUB_OUTPUT}"
 
 bosh_args=()
 if [ -n "${INPUT_NAME}" ]; then
