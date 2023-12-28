@@ -38,6 +38,7 @@ if [ -n "${INPUT_VERSION}" ]; then
   bosh_args+=("--version" "${BOSH_RELEASE_VERSION}")
 elif [ "${INPUT_TIMESTAMP_VERSION}" = 'true' ]; then
    printf "required variable INPUT_VERSION not set"
+  exit 1
 fi
 
 if [ -n "${INPUT_DIR}" ]; then
