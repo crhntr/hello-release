@@ -44,6 +44,7 @@ jobs:
 
       - name: Create BOSH Release
         uses: ./.github/actions/create-release
+        id: create-release
         env:
           CONFIG_PRIVATE_JSON_KEY: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
           GIT_USER_NAME: "Christopher Hunter"
@@ -58,3 +59,4 @@ jobs:
         with:
           files: hello-release-*.tgz
           tag_name: ${{ steps.vars.outputs.tag-version }}
+          prerelease: ${{ steps.create-release.outputs.pre-release-version }}

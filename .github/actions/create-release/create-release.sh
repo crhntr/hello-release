@@ -77,3 +77,9 @@ if [ "${INPUT_FINAL}" = 'true' ]; then
   git tag "${INPUT_VERSION}"
   git push origin main "${INPUT_VERSION}"
 fi
+
+if [[ "${INPUT_VERSION}" =~ "-" ]]; then
+  echo "pre-release-version=true" >> "${GITHUB_OUTPUT}"
+else
+  echo "pre-release-version=false" >> "${GITHUB_OUTPUT}"
+fi
