@@ -9,4 +9,6 @@ builds:
     version: 0.2.1-dev.8
   c6c4e500-438d-4800-6d1f-afaa414079be:
     version: v0.2.0
+  d45c27cc-923e-4a76-66f9-04427866d3a7:
+    version: 0.2.1-dev.11
 format-version: "2"
