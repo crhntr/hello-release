@@ -14,9 +14,9 @@ bosh upload-stemcell \
   "https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent?v=${STEMCELL_VERSION}"
 
 yq -y ".stemcells[0].version = ${STEMCELL_VERSION}" \
-  ./examples/deployment/manifest.yml | sponge ./examples/deployment/manifest.yml
+  ./manifests/example.yml | sponge ./manifests/example.yml
 
-bosh deploy ./examples/deployment/manifest.yml
+bosh deploy ./manifests/example.yml
 
 rm -f examples/tile/release/hello-release-*.pivotal
 
