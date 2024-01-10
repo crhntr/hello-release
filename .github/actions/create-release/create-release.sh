@@ -74,8 +74,8 @@ if [ "${INPUT_FINAL}" = 'true' ]; then
   git rebase main
   git switch main
   git merge --ff-only create-release
-  git tag "${INPUT_VERSION}"
-  git push origin main "${INPUT_VERSION}"
+  git tag "v${INPUT_VERSION}"
+  git push origin main "v${INPUT_VERSION}"
 fi
 
 if [[ "${INPUT_VERSION}" =~ "-" ]]; then
