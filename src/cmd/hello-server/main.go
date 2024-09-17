@@ -18,11 +18,11 @@ func main() {
 	mux := http.NewServeMux()
 	routes(mux)
 
-	log.Fatal(http.ListenAndServe(":"+port, httplog.Wrap(requireGetMethod(mux))))
+	log.Fatal(http.ListenAndServe(":"+port, httplog.Wrap(mux)))
 }
 
 func routes(mux *http.ServeMux) {
-	mux.HandleFunc("/", indexPage(
+	mux.HandleFunc("GET /", indexPage(
 		template.Must(template.New("index.html").Parse(indexPageSource)),
 		log.Default(),
 	))
@@ -53,16 +53,6 @@ func indexPage(t executer, logger linePrinter) http.HandlerFunc {
 			return
 		}
 		res.WriteHeader(http.StatusOK)
-		_, _ = io.Copy(res, &buf)
-	}
-}
-
-func requireGetMethod(next http.Handler) http.HandlerFunc {
-	return func(res http.ResponseWriter, req *http.Request) {
-		if req.Method != http.MethodGet {
-			http.Error(res, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-			return
-		}
-		next.ServeHTTP(res, req)
+		_, _ = buf.WriteTo(res)
 	}
 }

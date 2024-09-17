@@ -13,51 +13,6 @@ import (
 	"github.com/crhntr/hello-release/src/cmd/hello-server/fakes"
 )
 
-func Test_requireGetMethod(t *testing.T) {
-	var nextCallCount int
-	next := http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		res.WriteHeader(http.StatusNoContent)
-		nextCallCount++
-	})
-
-	h := requireGetMethod(next)
-	resetCallCount := func() { nextCallCount = 0 }
-
-	t.Run(http.MethodGet, func(t *testing.T) {
-		t.Cleanup(resetCallCount)
-
-		req, _ := http.NewRequest(http.MethodGet, "/", nil)
-		rec := httptest.NewRecorder()
-		h.ServeHTTP(rec, req)
-
-		if nextCallCount != 1 {
-			t.Error("expected next to be called")
-		}
-
-		res := rec.Result()
-		if res.StatusCode != http.StatusNoContent {
-			t.Errorf("expected next's status code, got: %d", res.StatusCode)
-		}
-	})
-
-	t.Run("not GET", func(t *testing.T) {
-		t.Cleanup(resetCallCount)
-
-		req, _ := http.NewRequest(http.MethodOptions, "/", nil)
-		rec := httptest.NewRecorder()
-		h.ServeHTTP(rec, req)
-
-		if nextCallCount != 0 {
-			t.Error("expected next to not be called")
-		}
-
-		res := rec.Result()
-		if res.StatusCode != http.StatusMethodNotAllowed {
-			t.Errorf("expected method not allowed, got: %d", res.StatusCode)
-		}
-	})
-}
-
 func Test_indexHTML(t *testing.T) {
 	_, err := template.New("index.html").Parse(indexPageSource)
 	if err != nil {
