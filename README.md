@@ -24,4 +24,4 @@ See: https://github.com/crhntr/hello-tile
 - Use `kiln bake` to create it.
 - Upload to Ops Manger
 - Configure the network stuff
-- Hit apply changes... take a walk
+- Hit apply changes... take a walk.
